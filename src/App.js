@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import logo from './logo.svg';
 import './App.css';
 
 import { initializeApp } from "firebase/app";
@@ -19,32 +19,54 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-try {
-  const docRef = await addDoc(collection(db, "users"), {
-    first: "Ada",
-    last: "Lovelace",
-    born: 1816
-  });
-  console.log("Document written with ID: ", docRef.id);
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
-
-let test;
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  test = `${doc.id} => ${JSON.stringify(doc.data())}`;
-});
-
-let print = JSON.stringify(test);
-
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <p>${print}</p>
-      </div>
-    )
+async function Add() {
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+      first: "Ada",
+      last: "Lovelace",
+      born: 1830
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
   }
-
 }
+
+async function Get() {
+  const querySnapshot = await getDocs(collection(db, "users"));
+
+  let result = [];
+  querySnapshot.forEach((doc) => {
+    result.push([doc.id, doc.data()]);
+  });
+
+  return result;
+}
+
+function App() {
+
+  let result = Get();
+  console.log(result);
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
