@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { useState, useEffect } from 'react';
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
@@ -19,12 +21,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function Add() {
+// Запись данных
+async function AddWork(name, number) {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      first: "Ada",
-      last: "Lovelace",
-      born: 1830
+    const docRef = await addDoc(collection(db, "work"), {
+      name: name,
+      number: number,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -32,42 +34,54 @@ async function Add() {
   }
 }
 
-async function Get() {
-  const querySnapshot = await getDocs(collection(db, "users"));
-
-  let result = [];
-  querySnapshot.forEach((doc) => {
-    result.push([doc.id, doc.data()]);
-  });
-
-  return result;
-}
-
-function FormForPiece() {
-  async function forPiece(e: React.FormEvent) {
+function FormForWork() {
+  async function forWork(e: React.FormEvent) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const piece = formData.get("piece");
-    alert(`Данные: '${piece}'`);
-
+    const work = formData.get("work");
+    const number = formData.get("number");
+    AddWork(work, number);
+    alert(`Данные: '${work}', '${number}'`);
   }
   return (
-    <form onSubmit={forPiece}>
-      <input name="piece" placeholder="Произведение" />
+    <form onSubmit={forWork}>
+      <input name="work" placeholder="Произведение" />
       <input name="number" placeholder="Номер" />
       <button type="submit">Сохранить</button>
     </form>
   );
 }
 
+// Основная функция
 function App() {
 
-  let result = Get();
-  console.log(result);
+  // Получение данных
+  const [worksArr, setWorksArr] = useState([]);
+
+  useEffect(() => {
+    const asyncEffect = async () => {
+      const querySnapshot = await getDocs(collection(db, "work"));
+
+      let result = [];
+      querySnapshot.forEach((doc) => {
+        result.push([doc.id, doc.data()]);
+      });
+
+      setWorksArr(result);
+    };
+
+    asyncEffect();
+  }, []);
+
+  let works = [];
+  if (worksArr.length) {
+    works = worksArr[0][0];
+  }
 
   return (
     <div>
-        {FormForPiece()}
+        {works}
+        {FormForWork()}
     </div>
   );
 }
