@@ -2,9 +2,6 @@ import {Button, Container, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {endSession, getSession, isLoggedIn} from "../session";
-
-
-import { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 // Запись данных
