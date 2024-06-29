@@ -3,6 +3,9 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {endSession, getSession, isLoggedIn} from "../session";
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 // Запись данных
 async function AddWork(name, number) {
