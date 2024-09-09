@@ -109,7 +109,7 @@ export default function User() {
       asyncEffect();
     }, []);
 
-    asyncEffect();
+    // asyncEffect();
   }, [navigate]);
 
   let works = [];
