@@ -92,7 +92,29 @@ export default function User() {
     let session = getSession();
     setEmail(session.email);
 
-    console.log("Your access token is: " + session.accessToken);
+    // Получение данных
+    const [worksArr, setWorksArr] = useState([]);
+
+    useEffect(() => {
+      const asyncEffect = async () => {
+        const querySnapshot = await getDocs(collection(db, "work"));
+
+        let result = [];
+        querySnapshot.forEach((doc) => {
+          result.push([doc.id, doc.data()]);
+        });
+
+        setWorksArr(result);
+      };
+
+      asyncEffect();
+    }, []);
+
+    let works = [];
+    if (worksArr.length) {
+      works = worksArr[0][0];
+    }
+
   }, [navigate]);
 
   const onLogout = () => {
@@ -101,6 +123,10 @@ export default function User() {
   }
 
   return (
+    <div>
+      {works}
+      {FormForWork()}
+    </div>
     <Container maxWidth="xs" sx={{mt: 2}}>
       <Typography variant="h6" component="h1" textAlign="center" gutterBottom>
         You're logged in as:
