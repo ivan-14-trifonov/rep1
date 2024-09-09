@@ -94,26 +94,23 @@ function User() {
     setEmail(session.email);
 
     // Получение данных
-    useEffect(() => {
-      const asyncEffect = async () => {
-        const querySnapshot = await getDocs(collection(db, "work"));
+    const asyncEffect = async () => {
+      const querySnapshot = await getDocs(collection(db, "work"));
 
-        let result = [];
-        querySnapshot.forEach((doc) => {
-          result.push([doc.id, doc.data()]);
-        });
+      let result = [];
+      querySnapshot.forEach((doc) => {
+        result.push([doc.id, doc.data()]);
+      });
 
-        setWorksArr(result);
-      };
-
-      asyncEffect();
-    }, []);
+      setWorksArr(result);
+    };
 
     // let works = [];
     // if (worksArr.length) {
     //   works = worksArr[0][0];
     // }
-
+    
+    asyncEffect();
   }, [navigate]);
 
   const onLogout = () => {
