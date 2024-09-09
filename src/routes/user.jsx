@@ -6,6 +6,8 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { app } from "../firebase";
 
+import {signInWithCustomToken, getAuth} from "firebase/auth";
+
 const db = getFirestore(app);
 
 // Запись данных
@@ -93,9 +95,9 @@ export default function User() {
     let session = getSession();
     setEmail(session.email);
 
-    // alert(JSON.stringify(session));
-    sessionStorage.setItem("email", session.email);
-    sessionStorage.setItem("accessToken", session.accessToken);
+    // если сессия сохранена
+    auth = getAuth(app);
+    signInWithCustomToken(auth, session.accessToken);
 
     // Получение данных
     const asyncEffect = async () => {
