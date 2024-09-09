@@ -83,6 +83,7 @@ function User() {
   let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [worksArr, setWorksArr] = useState([]);
 
   useEffect(() => {
     if (!isLoggedIn()) {
@@ -93,8 +94,6 @@ function User() {
     setEmail(session.email);
 
     // Получение данных
-    const [worksArr, setWorksArr] = useState([]);
-
     // useEffect(() => {
     //   const asyncEffect = async () => {
     //     const querySnapshot = await getDocs(collection(db, "work"));
