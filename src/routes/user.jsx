@@ -40,7 +40,7 @@ function FormForWork() {
 }
 
 // Основная функция
-function User() {
+/* function User() {
 
   // Получение данных
   const [worksArr, setWorksArr] = useState([]);
@@ -73,12 +73,12 @@ function User() {
   );
 }
 
-export default User;
+export default User; */
 
 
 
 
-/* export default function User() {
+export default function User() {
 
   let navigate = useNavigate();
 
@@ -116,4 +116,4 @@ export default User;
       </Button>
     </Container>
   )
-} */
+}
