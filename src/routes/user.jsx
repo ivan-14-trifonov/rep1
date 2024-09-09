@@ -93,7 +93,9 @@ export default function User() {
     let session = getSession();
     setEmail(session.email);
 
-    alert(JSON.stringify(session));
+    // alert(JSON.stringify(session));
+    sessionStorage.setItem("email", session.email);
+    sessionStorage.setItem("accessToken", session.accessToken);
 
     // Получение данных
     const asyncEffect = async () => {
