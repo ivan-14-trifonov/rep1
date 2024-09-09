@@ -96,7 +96,7 @@ export default function User() {
     setEmail(session.email);
 
     // если сессия сохранена
-    auth = getAuth(app);
+    let auth = getAuth(app);
     signInWithCustomToken(auth, session.accessToken);
 
     // Получение данных
