@@ -80,31 +80,6 @@ export default User; */
 
 export default function User() {
 
-  const onS100 = async (event) => {
-    event.preventDefault();
-
-    // validate the inputs
-    if (!email || !password) {
-      setError("Please enter your username and password.");
-      return;
-    }
-
-    // clear the errors
-    setError("");
-
-    // TODO: send the login request
-    try {
-      let loginResponse = await signInUser(email, password);
-      startSession(loginResponse.user);
-      navigate("/user");
-    } catch (error) {
-      console.error(error.message);
-      setError(error.message);
-    }
-  }
-
-  onS100();
-
   let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -117,6 +92,8 @@ export default function User() {
 
     let session = getSession();
     setEmail(session.email);
+
+    alert(JSON.stringify(session));
 
     // Получение данных
     const asyncEffect = async () => {
