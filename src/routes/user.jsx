@@ -95,6 +95,7 @@ export default function User() {
     let session = getSession();
     setEmail(session.email);
 
+    // ЭТО ЗАГЛУШКА: ЗАМЕНИТЬ!
     // если сессия сохранена
     let auth = getAuth(app);
     signInWithCustomToken(auth, session.accessToken);
