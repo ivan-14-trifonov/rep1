@@ -94,22 +94,18 @@ export default function User() {
     setEmail(session.email);
 
     // Получение данных
-    useEffect(() => {
-      const asyncEffect = async () => {
-        const querySnapshot = await getDocs(collection(db, "work"));
+    const asyncEffect = async () => {
+      const querySnapshot = await getDocs(collection(db, "work"));
 
-        let result = [];
-        querySnapshot.forEach((doc) => {
-          result.push([doc.id, doc.data()]);
-        });
+      let result = [];
+      querySnapshot.forEach((doc) => {
+        result.push([doc.id, doc.data()]);
+      });
 
-        setWorksArr(result);
-      };
+      setWorksArr(result);
+    };
 
-      asyncEffect();
-    }, []);
-
-    // asyncEffect();
+    asyncEffect();
   }, [navigate]);
 
   let works = [];
