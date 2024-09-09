@@ -78,7 +78,7 @@ export default User; */
 
 
 
-export default function User() {
+function User() {
 
   let navigate = useNavigate();
 
@@ -93,27 +93,27 @@ export default function User() {
     setEmail(session.email);
 
     // Получение данных
-    const [worksArr, setWorksArr] = useState([]);
+    // const [worksArr, setWorksArr] = useState([]);
 
-    useEffect(() => {
-      const asyncEffect = async () => {
-        const querySnapshot = await getDocs(collection(db, "work"));
+    // useEffect(() => {
+    //   const asyncEffect = async () => {
+    //     const querySnapshot = await getDocs(collection(db, "work"));
 
-        let result = [];
-        querySnapshot.forEach((doc) => {
-          result.push([doc.id, doc.data()]);
-        });
+    //     let result = [];
+    //     querySnapshot.forEach((doc) => {
+    //       result.push([doc.id, doc.data()]);
+    //     });
 
-        setWorksArr(result);
-      };
+    //     setWorksArr(result);
+    //   };
 
-      asyncEffect();
-    }, []);
+    //   asyncEffect();
+    // }, []);
 
-    let works = [];
-    if (worksArr.length) {
-      works = worksArr[0][0];
-    }
+    // let works = [];
+    // if (worksArr.length) {
+    //   works = worksArr[0][0];
+    // }
 
   }, [navigate]);
 
@@ -124,10 +124,10 @@ export default function User() {
 
   return (
     <Container maxWidth="xs" sx={{mt: 2}}>
-      <div>
+{/*      <div>
         {works}
         {FormForWork()}
-      </div>
+      </div>*/}
       <Typography variant="h6" component="h1" textAlign="center" gutterBottom>
         You're logged in as:
       </Typography>
@@ -143,3 +143,5 @@ export default function User() {
     </Container>
   )
 }
+
+export default User;
