@@ -123,11 +123,11 @@ export default function User() {
   }
 
   return (
-    <div>
-      {works}
-      {FormForWork()}
-    </div>
     <Container maxWidth="xs" sx={{mt: 2}}>
+      <div>
+        {works}
+        {FormForWork()}
+      </div>
       <Typography variant="h6" component="h1" textAlign="center" gutterBottom>
         You're logged in as:
       </Typography>
