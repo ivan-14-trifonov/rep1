@@ -93,7 +93,7 @@ function User() {
     setEmail(session.email);
 
     // Получение данных
-    // const [worksArr, setWorksArr] = useState([]);
+    const [worksArr, setWorksArr] = useState([]);
 
     // useEffect(() => {
     //   const asyncEffect = async () => {
