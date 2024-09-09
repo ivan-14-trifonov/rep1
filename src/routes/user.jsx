@@ -78,7 +78,7 @@ export default User; */
 
 
 
-function User() {
+export default function User() {
 
   let navigate = useNavigate();
 
@@ -105,11 +105,11 @@ function User() {
       setWorksArr(result);
     };
 
-    // let works = [];
-    // if (worksArr.length) {
-    //   works = worksArr[0][0];
-    // }
-    
+    let works = [];
+    if (worksArr.length) {
+      works = worksArr[0][0];
+    }
+
     asyncEffect();
   }, [navigate]);
 
@@ -120,10 +120,10 @@ function User() {
 
   return (
     <Container maxWidth="xs" sx={{mt: 2}}>
-{/*      <div>
+      <div>
         {works}
         {FormForWork()}
-      </div>*/}
+      </div>
       <Typography variant="h6" component="h1" textAlign="center" gutterBottom>
         You're logged in as:
       </Typography>
@@ -139,5 +139,3 @@ function User() {
     </Container>
   )
 }
-
-export default User;
