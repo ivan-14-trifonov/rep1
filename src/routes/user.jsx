@@ -105,13 +105,13 @@ export default function User() {
       setWorksArr(result);
     };
 
-    let works = [];
-    if (worksArr.length) {
-      works = worksArr[0][0];
-    }
-
     asyncEffect();
   }, [navigate]);
+
+  let works = [];
+  if (worksArr.length) {
+    works = worksArr[0][0];
+  }
 
   const onLogout = () => {
     endSession();
