@@ -48,6 +48,6 @@ export default function Login() {
       >
         Войти через Google
       </Button>
-    <div>
+    </div>
   )
 }
