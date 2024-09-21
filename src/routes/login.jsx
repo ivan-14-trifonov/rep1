@@ -4,6 +4,8 @@ import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
 
+import {GoogleOutlined} from "@ant-design/icons";
+
 export default function Login() {
 
   const navigate = useNavigate();
