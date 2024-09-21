@@ -4,9 +4,11 @@ import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
 
-import { getAuth, signInWithRedirect } from "firebase/auth";
+import {GoogleAuthProvider, getAuth, signInWithRedirect} from "firebase/auth";
 
 export default function Login() {
+
+  const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
   signInWithRedirect(auth, provider);
