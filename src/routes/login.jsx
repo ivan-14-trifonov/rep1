@@ -48,7 +48,6 @@ export default function Login() {
 
 
 
-  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
