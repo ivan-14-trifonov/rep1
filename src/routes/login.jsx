@@ -7,14 +7,15 @@ import {startSession} from "../session";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {GoogleOutlined} from "@ant-design/icons";
+import styled from "styled-components";
 
-// const Root = styled("div")`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-// `;
+const Root = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 export default function Login() {
 
@@ -75,7 +76,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <Root>
       <p>Войдите через Google для начала работы</p>
       <Button
         type="primary"
@@ -87,6 +88,6 @@ export default function Login() {
       >
         Войти через Google
       </Button>
-    </div>
+    </Root>
   )
 }
