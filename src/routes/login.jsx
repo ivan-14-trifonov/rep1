@@ -7,7 +7,9 @@ import {startSession} from "../session";
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {GoogleOutlined} from "@ant-design/icons";
 
-export default function Login() {
+type Props = {};
+
+export const Login(): FC<Props> = ({}) =>  {
 
   const [isLoading, setIsLoading] = useState(false);
   // const routes = useContext(RoutesContext);
