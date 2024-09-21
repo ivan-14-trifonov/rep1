@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
-import { RoutesContext } from "../../utils/routesContext";
 
 export default function Login() {
 
@@ -37,7 +36,7 @@ export default function Login() {
   }
 
   return (
-    <Root>
+//ПРОБЕЛЫ
       <p>Войдите через Google для начала работы</p>
       <Button
         type="primary"
@@ -49,6 +48,5 @@ export default function Login() {
       >
         Войти через Google
       </Button>
-    </Root>
   )
 }
