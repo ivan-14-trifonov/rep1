@@ -6,7 +6,42 @@ import {startSession} from "../session";
 
 import {GoogleOutlined} from "@ant-design/icons";
 
+const Root = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
 export default function Login() {
+
+  const [isLoading, setIsLoading] = useState(false);
+  // const routes = useContext(RoutesContext);
+
+  const provider = new GoogleAuthProvider();
+
+  const auth = getAuth();
+  auth.languageCode = "ru";
+
+  const handleAuth = () => {
+    setIsLoading(true);
+    signInWithPopup(auth, provider)
+      .then(() => {
+        // routes?.setRoutes([]);
+      })
+      .catch(() => {
+        notification.error({
+          message: "Ошибка авторизации",
+          description: "Авторизация не была воспроизведена. Повторите еще раз.",
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+
 
   const navigate = useNavigate();
 
@@ -38,7 +73,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <Root>
       <p>Войдите через Google для начала работы</p>
       <Button
         type="primary"
@@ -50,6 +85,6 @@ export default function Login() {
       >
         Войти через Google
       </Button>
-    </div>
+    </Root>
   )
 }
