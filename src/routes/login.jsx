@@ -9,7 +9,7 @@ import {GoogleOutlined} from "@ant-design/icons";
 
 type Props = {};
 
-export const Login(): FC<Props> = ({}) =>  {
+export const Login: FC<Props> = ({}) =>  {
 
   const [isLoading, setIsLoading] = useState(false);
   // const routes = useContext(RoutesContext);
