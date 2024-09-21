@@ -12,7 +12,6 @@ export default function Login() {
   const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
-  const handleAuth = signInWithRedirect(auth, provider);
 
   const isLoading = 0;
 
