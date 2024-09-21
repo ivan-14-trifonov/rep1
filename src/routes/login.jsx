@@ -5,50 +5,34 @@ import {signInUser} from "../firebase";
 import {startSession} from "../session";
 
 import {GoogleAuthProvider, getAuth, signInWithRedirect} from "firebase/auth";
+import {GoogleOutlined} from "@ant-design/icons";
 
 export default function Login() {
 
   const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
-  signInWithRedirect(auth, provider);
+  handleAuth = signInWithRedirect(auth, provider);
 
-  const onSubmit = 0;
-  const email = 0;
-  const password = 0;
+  const isLoading = 0;
 
 
   return (
     <Container maxWidth="xs" sx={{mt: 2}}>
       <Typography variant="h5" component="h1" gutterBottom textAlign="center">
-        Login
+        Войдите через Google для начала работы
       </Typography>
       {/*error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>*/}
-      <Box component="form" onSubmit={onSubmit}>
-        <TextField
-          label="Email"
-          variant="outlined"
-          autoComplete="email"
-          value={email}
-          // onChange={(e) => setEmail(e.target.value)}
-          sx={{mt: 1}}
-          fullWidth
-        />
-        <TextField
-          label="Password"
-          variant="outlined"
-          type="password"
-          autoComplete="new-password"
-          value={password}
-          // onChange={(e) => setPassword(e.target.value)}
-          sx={{mt: 3}}
-          fullWidth
-        />
-        <Button variant="contained" type="submit" sx={{mt: 3}} fullWidth>Login</Button>
-        <Box sx={{mt: 2}}>
-          Don't have an account yet? <Link href="/register">Register</Link>
-        </Box>
-      </Box>
+      <Button
+        type="primary"
+        shape="round"
+        icon={<GoogleOutlined />}
+        size="large"
+        loading={isLoading}
+        onClick={handleAuth}
+      >
+        Войти через Google
+      </Button>
     </Container>
   )
 
