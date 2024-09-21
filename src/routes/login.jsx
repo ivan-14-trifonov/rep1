@@ -1,53 +1,40 @@
-import {Alert, Box, Container, Link, TextField, Typography} from "@mui/material";
-import { Button, notification } from "antd";
+import {Alert, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
 
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import {GoogleOutlined} from "@ant-design/icons";
-import styled from "styled-components";
-
-const Root = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
+import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 
 export default function Login() {
-
-  const [isLoading, setIsLoading] = useState(false);
-  // const routes = useContext(RoutesContext);
-  const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
-  auth.languageCode = "ru";
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
 
-  const handleAuth = () => {
-    setIsLoading(true);
-    signInWithPopup(auth, provider)
-      .then(() => {
-        // routes?.setRoutes([]);
-        navigate("/user");
-      })
-      .catch(() => {
-        notification.error({
-          message: "Ошибка авторизации",
-          description: "Авторизация не была воспроизведена. Повторите еще раз.",
-        });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
 
 
 
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -77,18 +64,36 @@ export default function Login() {
   }
 
   return (
-    <Root>
-      <p>Войдите через Google для начала работы</p>
-      <Button
-        type="primary"
-        shape="round"
-        icon={<GoogleOutlined />}
-        size="large"
-        loading={isLoading}
-        onClick={handleAuth}
-      >
-        Войти через Google
-      </Button>
-    </Root>
+    <Container maxWidth="xs" sx={{mt: 2}}>
+      <Typography variant="h5" component="h1" gutterBottom textAlign="center">
+        Login
+      </Typography>
+      {error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>}
+      <Box component="form" onSubmit={onSubmit}>
+        <TextField
+          label="Email"
+          variant="outlined"
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          sx={{mt: 1}}
+          fullWidth
+        />
+        <TextField
+          label="Password"
+          variant="outlined"
+          type="password"
+          autoComplete="new-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          sx={{mt: 3}}
+          fullWidth
+        />
+        <Button variant="contained" type="submit" sx={{mt: 3}} fullWidth>Login</Button>
+        <Box sx={{mt: 2}}>
+          Don't have an account yet? <Link href="/register">Register</Link>
+        </Box>
+      </Box>
+    </Container>
   )
 }
