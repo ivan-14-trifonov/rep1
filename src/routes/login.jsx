@@ -21,6 +21,7 @@ export default function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
   // const routes = useContext(RoutesContext);
+  const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
@@ -32,6 +33,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then(() => {
         // routes?.setRoutes([]);
+        navigate("/user");
       })
       .catch(() => {
         notification.error({
