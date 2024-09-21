@@ -4,18 +4,19 @@ import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
 
-import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import {getAuth, getRedirectResult, GoogleAuthProvider} from "firebase/auth";
 
 export default function Login() {
 
   const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
-  signInWithPopup(auth, provider)
+  getRedirectResult(auth)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
+      // This gives you a Google Access Token. You can use it to access Google APIs.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
+
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
