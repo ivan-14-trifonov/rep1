@@ -19,13 +19,13 @@ export default function Login() {
       <Typography variant="h5" component="h1" gutterBottom textAlign="center">
         Login
       </Typography>
-      {error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>}
-      <Box component="form" onSubmit={onSubmit}>
+      {/*error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>*/}
+      <Box component="form" onSubmit={/*onSubmit*/}>
         <TextField
           label="Email"
           variant="outlined"
           autoComplete="email"
-          value={email}
+          value={/*email*/}
           // onChange={(e) => setEmail(e.target.value)}
           sx={{mt: 1}}
           fullWidth
@@ -35,7 +35,7 @@ export default function Login() {
           variant="outlined"
           type="password"
           autoComplete="new-password"
-          value={password}
+          value={/*password*/}
           // onChange={(e) => setPassword(e.target.value)}
           sx={{mt: 3}}
           fullWidth
