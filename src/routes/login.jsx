@@ -13,6 +13,10 @@ export default function Login() {
   const auth = getAuth();
   signInWithRedirect(auth, provider);
 
+  const onSubmit = 0;
+  const email = 0;
+  const password = 0;
+
 
   return (
     <Container maxWidth="xs" sx={{mt: 2}}>
@@ -20,12 +24,12 @@ export default function Login() {
         Login
       </Typography>
       {/*error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>*/}
-      <Box component="form" onSubmit={/*onSubmit*/}>
+      <Box component="form" onSubmit={onSubmit}>
         <TextField
           label="Email"
           variant="outlined"
           autoComplete="email"
-          value={/*email*/}
+          value={email}
           // onChange={(e) => setEmail(e.target.value)}
           sx={{mt: 1}}
           fullWidth
@@ -35,7 +39,7 @@ export default function Login() {
           variant="outlined"
           type="password"
           autoComplete="new-password"
-          value={/*password*/}
+          value={password}
           // onChange={(e) => setPassword(e.target.value)}
           sx={{mt: 3}}
           fullWidth
