@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {signInUser} from "../firebase";
 import {startSession} from "../session";
-import {RoutesContext} from "../../utils/routesContext";
+import {RoutesContext} from "../utils/routesContext";
 
 export default function Login() {
 
