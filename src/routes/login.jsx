@@ -74,7 +74,7 @@ export default function Login() {
   }
 
   return (
-    <Root>
+    <div>
       <p>Войдите через Google для начала работы</p>
       <Button
         type="primary"
@@ -86,6 +86,6 @@ export default function Login() {
       >
         Войти через Google
       </Button>
-    </Root>
+    </div>
   )
 }
