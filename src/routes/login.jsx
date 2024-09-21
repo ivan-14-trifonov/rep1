@@ -36,17 +36,16 @@ export default function Login() {
   }
 
   return (
-//ПРОБЕЛЫ
-      <p>Войдите через Google для начала работы</p>
-      <Button
-        type="primary"
-        shape="round"
-        icon={<GoogleOutlined />}
-        size="large"
-        loading={isLoading}
-        onClick={handleAuth}
-      >
-        Войти через Google
-      </Button>
+    <p>Войдите через Google для начала работы</p>
+    <Button
+      type="primary"
+      shape="round"
+      icon={<GoogleOutlined />}
+      size="large"
+      loading={isLoading}
+      onClick={handleAuth}
+    >
+      Войти через Google
+    </Button>
   )
 }
