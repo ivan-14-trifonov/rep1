@@ -9,52 +9,48 @@ import {GoogleOutlined} from "@ant-design/icons";
 
 export default function Login() {
 
+  const [isLoading, setIsLoading] = useState(false);
+  // const routes = useContext(RoutesContext);
+
   const provider = new GoogleAuthProvider();
 
   const auth = getAuth();
+  auth.languageCode = "ru";
 
-  const isLoading = 0;
-
-
-
-  const handleAuth = signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-
+  const handleAuth = () => {
+    setIsLoading(true);
+    signInWithPopup(auth, provider)
+      .then(() => {
+        //routes?.setRoutes([]);
+        alert('101');
+      })
+      .catch(() => {
+        // notification.error({
+        //   message: "Ошибка авторизации",
+        //   description: "Авторизация не была воспроизведена. Повторите еще раз.",
+        // });
+        alert('505');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
-    <Container maxWidth="xs" sx={{mt: 2}}>
-      <Typography variant="h5" component="h1" gutterBottom textAlign="center">
-        Войдите через Google для начала работы
-      </Typography>
-      {/*error && <Alert severity="error" sx={{my: 2}}>{error}</Alert>*/}
+    <Root>
+      <p>Войдите через Google для начала работы</p>
       <Button
         type="primary"
         shape="round"
         icon={<GoogleOutlined />}
         size="large"
-        //loading={isLoading}
+        loading={isLoading}
         onClick={handleAuth}
       >
         Войти через Google
       </Button>
-    </Container>
+    </Root>
   )
+
 
 }
