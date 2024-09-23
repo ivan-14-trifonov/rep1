@@ -31,7 +31,6 @@ function FormForWork() {
     const number = formData.get("number");
     AddWork(work, number);
     alert(`Данные: '${work}', '${number}'`);
-  }
   return (
     <form onSubmit={forWork}>
       <input name="work" placeholder="Произведение" />
@@ -88,17 +87,17 @@ export default function User() {
   const [worksArr, setWorksArr] = useState([]);
 
   useEffect(() => {
-    if (!isLoggedIn()) {
-      navigate("/login");
-    }
+    // if (!isLoggedIn()) {
+    //   navigate("/login");
+    // }
 
     let session = getSession();
     setEmail(session.email);
 
     // ЭТО ЗАГЛУШКА: ЗАМЕНИТЬ!
     // если сессия сохранена
-    let auth = getAuth(app);
-    signInWithCustomToken(auth, session.accessToken);
+    // let auth = getAuth(app);
+    // signInWithCustomToken(auth, session.accessToken);
 
     // Получение данных
     const asyncEffect = async () => {
