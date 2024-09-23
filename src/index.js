@@ -8,7 +8,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import Login from "./routes/login";
-import Register from "./routes/register";
+// import Register from "./routes/register";
 import User from "./routes/user";
 import ErrorPage from "./error-page";
 
@@ -26,10 +26,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login/>,
   },
-  {
+  /*{
     path: "/register",
     element: <Register/>,
-  },
+  },*/
   {
     path: "/user",
     element: <User/>,
