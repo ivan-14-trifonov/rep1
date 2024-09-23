@@ -91,15 +91,12 @@ export default function User() {
   const [worksArr, setWorksArr] = useState([]);
 
   useEffect(() => {
-    // if (!isLoggedIn()) {
-    //   navigate("/login");
-    // }
-
     const user = auth.currentUser;
+    
     if (user != null) {
-      alert("User is signed in with UID: ${user.uid}");
+      alert(user.uid);
     } else {
-      alert("No user is signed in.");
+      navigate("/login");
     }
 
     // let session = getSession();
