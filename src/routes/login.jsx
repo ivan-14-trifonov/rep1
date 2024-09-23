@@ -2,7 +2,7 @@ import {Alert, Box, Container, Link, TextField, Typography} from "@mui/material"
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {signInUser} from "../firebase";
-import {startSession} from "../session";
+// import {startSession} from "../session";
 
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {GoogleOutlined} from "@ant-design/icons";

@@ -1,4 +1,4 @@
-import {Alert, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
+/*import {Alert, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {createUser} from "../firebase";
@@ -83,4 +83,4 @@ export default function Register() {
       </Box>
     </Container>
   )
-}
+}*/
