@@ -4,7 +4,7 @@ import {useState} from "react";
 import {signInUser} from "../firebase";
 // import {startSession} from "../session";
 
-import {getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider} from "firebase/auth";
+import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {GoogleOutlined} from "@ant-design/icons";
 import { Button, notification } from "antd";
 
@@ -22,27 +22,19 @@ export default function Login() {
 
   const handleAuth = () => {
     setIsLoading(true);
-    signInWithRedirect(auth, provider);
-    /*getRedirectResult(auth)
-      .then((result) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // const user = result.user;
+    signInWithPopup(auth, provider)
+      .then(() => {
         navigate("/user");
       })
-      .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // const email = error.customData.email;
-        // const credential = GoogleAuthProvider.credentialFromError(error);
+      .catch(() => {
         notification.error({
           message: "Ошибка авторизации",
           description: "Авторизация не была воспроизведена. Повторите еще раз.",
-        })
+        });
       })
       .finally(() => {
         setIsLoading(false);
-      });*/
+      });
   };
 
   return (
