@@ -1,4 +1,4 @@
-import {Alert, Box, Button, Container, Link, TextField, Typography} from "@mui/material";
+import {Alert, Box, Container, Link, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {signInUser} from "../firebase";
@@ -6,6 +6,7 @@ import {startSession} from "../session";
 
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {GoogleOutlined} from "@ant-design/icons";
+import { Button, notification } from "antd";
 
 type Props = {};
 
@@ -27,10 +28,10 @@ export default function Login() {
         alert('101');
       })
       .catch(() => {
-        // notification.error({
-        //   message: "Ошибка авторизации",
-        //   description: "Авторизация не была воспроизведена. Повторите еще раз.",
-        // });
+        notification.error({
+          message: "Ошибка авторизации",
+          description: "Авторизация не была воспроизведена. Повторите еще раз.",
+        });
         alert('505');
       })
       .finally(() => {
