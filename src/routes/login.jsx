@@ -23,7 +23,7 @@ export default function Login() {
   const handleAuth = () => {
     setIsLoading(true);
     signInWithRedirect(auth, provider);
-    getRedirectResult(auth)
+    /*getRedirectResult(auth)
       .then((result) => {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
@@ -42,7 +42,7 @@ export default function Login() {
       })
       .finally(() => {
         setIsLoading(false);
-      });
+      });*/
   };
 
   return (
