@@ -7,7 +7,7 @@ import { getFirestore } from "firebase/firestore";
 import { app } from "../firebase";
 
 // import {signInWithCustomToken, getAuth} from "firebase/auth";
-import {getAuth, signOut, currentUser} from "firebase/auth";
+import {getAuth, signOut, getCurrentUser} from "firebase/auth";
 
 const db = getFirestore(app);
 
@@ -95,7 +95,7 @@ export default function User() {
     //   navigate("/login");
     // }
 
-    const user = currentUser(auth);
+    const user = getCurrentUser(auth);
     if (user != null) {
       alert("User is signed in with UID: ${user.uid}");
     } else {
