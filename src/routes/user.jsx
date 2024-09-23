@@ -31,6 +31,7 @@ function FormForWork() {
     const number = formData.get("number");
     AddWork(work, number);
     alert(`Данные: '${work}', '${number}'`);
+  }
   return (
     <form onSubmit={forWork}>
       <input name="work" placeholder="Произведение" />
