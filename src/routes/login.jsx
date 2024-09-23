@@ -29,7 +29,8 @@ export default function Login() {
         // const token = credential.accessToken;
         // const user = result.user;
         navigate("/user");
-      }).catch((error) => {
+      })
+      .catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
         // const email = error.customData.email;
@@ -38,6 +39,7 @@ export default function Login() {
           message: "Ошибка авторизации",
           description: "Авторизация не была воспроизведена. Повторите еще раз.",
         })
+      })
       .finally(() => {
         setIsLoading(false);
       });
