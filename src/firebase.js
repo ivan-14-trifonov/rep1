@@ -16,10 +16,10 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
-export const createUser = async (email, password) => {
+/*export const createUser = async (email, password) => {
   return createUserWithEmailAndPassword(getAuth(app), email, password);
 }
 
 export const signInUser = async (email, password) => {
   return signInWithEmailAndPassword(getAuth(app), email, password);
-}
+}*/

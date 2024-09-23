@@ -1,13 +1,13 @@
 import {Button, Container, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {endSession, getSession, isLoggedIn} from "../session";
+// import {endSession, getSession, isLoggedIn} from "../session";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { app } from "../firebase";
 
 // import {signInWithCustomToken, getAuth} from "firebase/auth";
-import { getAuth, signOut } from "firebase/auth";
+import {getAuth, signOut, currentUser} from "firebase/auth";
 
 const db = getFirestore(app);
 
@@ -94,6 +94,13 @@ export default function User() {
     // if (!isLoggedIn()) {
     //   navigate("/login");
     // }
+
+    const user = currentUser(auth);
+    if (user != null) {
+      alert("User is signed in with UID: ${user.uid}");
+    } else {
+      alert("No user is signed in.");
+    }
 
     // let session = getSession();
     // setEmail(session.email);
