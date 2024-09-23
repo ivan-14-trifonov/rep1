@@ -6,7 +6,8 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { app } from "../firebase";
 
-import {signInWithCustomToken, getAuth} from "firebase/auth";
+// import {signInWithCustomToken, getAuth} from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 const db = getFirestore(app);
 
@@ -82,6 +83,8 @@ export default User; */
 
 export default function User() {
 
+  const auth = getAuth();
+
   let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -92,8 +95,8 @@ export default function User() {
     //   navigate("/login");
     // }
 
-    let session = getSession();
-    setEmail(session.email);
+    // let session = getSession();
+    // setEmail(session.email);
 
     // ЭТО ЗАГЛУШКА: ЗАМЕНИТЬ!
     // если сессия сохранена
@@ -121,8 +124,11 @@ export default function User() {
   }
 
   const onLogout = () => {
-    endSession();
-    navigate("/login");
+    signOut(auth).then(() => {
+      navigate("/login");
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
   return (
