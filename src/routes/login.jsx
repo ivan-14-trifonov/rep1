@@ -13,7 +13,7 @@ type Props = {};
 export default function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
-  // const routes = useContext(RoutesContext);
+  const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
 
@@ -24,15 +24,13 @@ export default function Login() {
     setIsLoading(true);
     signInWithPopup(auth, provider)
       .then(() => {
-        //routes?.setRoutes([]);
-        alert('101');
+        navigate("/user");
       })
       .catch(() => {
         notification.error({
           message: "Ошибка авторизации",
           description: "Авторизация не была воспроизведена. Повторите еще раз.",
         });
-        alert('505');
       })
       .finally(() => {
         setIsLoading(false);
